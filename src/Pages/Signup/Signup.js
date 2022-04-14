@@ -9,8 +9,50 @@ const [lname, setLname] = useState("");
 const [email, setEmail] = useState("");
 const [pwd, setPwd] = useState("");
 const [pwd1, setPwd1] = useState("");
-const [id, setId] = useState(1005);
+var id=1005;
+const success =()=>{
+  alert("Account Created....\nYour Login Details :\n userid : "+id+"\nPassword : "+pwd+"\nLogin with the above credentials !");
+  navigate("/");
+
+}
+const setId=()=>{
+  axios.get("http://localhost:9090/loginController/getUser/"+id).then(response=>{
+    console.log("a");
+    id++;
+    console.log(id);
+      return false;
+    }).catch(e=>{
+      console.log("b");
+      return true;
+    });
+}
 const done =()=>{
+  if(fname === ""){
+    alert("Enter First Name");
+    return;
+  }
+  if(lname === ""){
+    alert("Enter Last Name");
+    return;
+  }
+  if(email === ""){
+    alert("Enter your Email");
+    return;
+  }
+  if(email.includes("@") && email.includes(".")){
+
+  }
+  else{
+    alert("Enter valid email");
+    return;
+  }
+  if(pwd === ""){
+    alert("Enter Password");
+    return;
+  }
+  if(setId()){
+    id++;
+  }
 if(pwd === pwd1){
   axios.post('http://localhost:9090/loginController/addUser',{
       
@@ -27,13 +69,13 @@ if(pwd === pwd1){
 
 
 }).then(function (r){
-  setId(id+1);
   console.log(r);
+  success();
 })
-navigate("/home");
 }
 else{
 alert("Password does not match! Re-enter again");
+return;
 }
 };
   return (
@@ -43,22 +85,23 @@ alert("Password does not match! Re-enter again");
     
     <p>
 Create new account :</p>
+
 <table>
   <tr><td>
     First Name :</td>
-    <td><input onChange={(e) => setFname(e.target.value)} type="text" name="userid" /></td></tr>
+    <td><input onChange={(e) => setFname(e.target.value)} type="text" name="userid" required/></td></tr>
     <br /><br /><tr>
     <td>Last Name :</td>
-    <td><input onChange={(e) => setLname(e.target.value)} type="text" name="userid" /></td></tr>
+    <td><input onChange={(e) => setLname(e.target.value)} type="text" name="userid" required/></td></tr>
     <br /><br /><tr>
     <td>Email address :</td>
-    <td><input onChange={(e) => setEmail(e.target.value)} type="text" name="userid" /></td></tr>
+    <td><input onChange={(e) => setEmail(e.target.value)} type="email" name="userid" required/></td></tr>
     <br /><br /><tr>
     <td>Password : </td>
-    <td><input onChange={(e) => setPwd(e.target.value)} type="password" name="password1" /></td></tr>
+    <td><input onChange={(e) => setPwd(e.target.value)} type="password" name="password1" required/></td></tr>
     <br /><br /><tr>
     <td>Re-enter Password : </td>
-    <td><input onChange={(e) => setPwd1(e.target.value)} type="password" name="password1" /></td></tr>
+    <td><input onChange={(e) => setPwd1(e.target.value)} type="password" name="password1" required/></td></tr>
     </table>
     <br /><center><br /><br />
     <button onClick={done}>Sign Up</button></center><br />

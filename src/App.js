@@ -5,6 +5,7 @@ import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import Failure from "./Pages/Failure/failure";
 import Home from "./Pages/Home/Home";
+import Store from "./Components/store";
 function App() {
   return (
     <div>
