@@ -1,24 +1,20 @@
-import React, { useState} from "react";
+import React, { useState, useContext} from "react";
 import { Link, withRouter, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Login.css';
-
-
+import Store from '../../Store';
+import { Context } from "../../Store";
 const Login = () => {
-  
+  const [state, setState]=useContext(Context);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let pwd=" ";
   function checkIfUserIsValid() {
     axios.get("http://localhost:9090/loginController/getUser/"+username).then(response=>{
-
       pwd=response.data.password;
-     
-      
     }).catch(e=>{
       console.log(e);
-      
       return false;
     });
     console.log(pwd);
@@ -28,7 +24,6 @@ const Login = () => {
     else {
       alert("User not found !!! Try again");
       return false;}
-      
   }
   function Llogin() {
     if(username === ""){
@@ -39,10 +34,9 @@ const Login = () => {
       alert("Enter password");
       return;
     }
-    
-   
   let isLogged = checkIfUserIsValid();
     if (isLogged) {
+      setState({userId:username});
       navigate("/home");
     } 
   }
@@ -53,7 +47,6 @@ const Login = () => {
       <div className="blueboxcontent">
       <img src="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png"></img>
       <p>Login</p><br />
-      
         <div>
           <label>Username</label>{" "}
           <input
@@ -88,5 +81,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;
