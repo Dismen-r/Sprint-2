@@ -5,10 +5,10 @@ import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import Failure from "./Pages/Failure/failure";
 import Home from "./Pages/Home/Home";
-import Store from "./Components/store";
+import Store from "./Store";
 function App() {
   return (
-    <div>
+    <Store>
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Login />} />
@@ -17,7 +17,7 @@ function App() {
           <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </Store>
   );
 }
 

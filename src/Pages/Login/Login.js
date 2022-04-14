@@ -1,33 +1,15 @@
 import React, { useState} from "react";
-//import {useContext} from 'react';
 import { Link, withRouter, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Login.css';
-//import { Context } from "../../Components/store";
-//const [usrId]= setGlobalState("usrId");
+
 
 const Login = () => {
   
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const [isLogged, setIsLogged] = useState("");
-  //const [user, setUser] = useState("");
   let pwd=" ";
-
-  function Llogin() {
-    //const [state, setState]=useContext(Context);
-  //console.log(state.Gid);
-    if(username === ""){
-      alert("Enter userid");
-      return;
-    }
-    if(password === ""){
-      alert("Enter password");
-      return;
-    }
-    
-
   function checkIfUserIsValid() {
     axios.get("http://localhost:9090/loginController/getUser/"+username).then(response=>{
 
@@ -48,6 +30,17 @@ const Login = () => {
       return false;}
       
   }
+  function Llogin() {
+    if(username === ""){
+      alert("Enter userid");
+      return;
+    }
+    if(password === ""){
+      alert("Enter password");
+      return;
+    }
+    
+   
   let isLogged = checkIfUserIsValid();
     if (isLogged) {
       navigate("/home");
@@ -86,7 +79,7 @@ const Login = () => {
         {" "}
         Not an existing user??{" "}
         <Link to="/signup">
-          <span>Signup</span>
+          <span>Sign Up</span>
         </Link>
       </div>
       </div>
