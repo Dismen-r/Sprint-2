@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, withRouter, useNavigate, Navigate } from "react-router-dom";
-
+import {Link} from "react-router-dom";
+import Router from "../../Router";
 const Signup = () => {
-  const navigate = useNavigate();
+//const navigate = useNavigate();
 const [fname, setFname] = useState("");
 const [lname, setLname] = useState("");
 const [email, setEmail] = useState("");
 const [pwd, setPwd] = useState("");
 const [pwd1, setPwd1] = useState("");
 var id=1005;
-const success =()=>{
-  alert("Account Created....\nYour Login Details :\n userid : "+id+"\nPassword : "+pwd+"\nLogin with the above credentials !");
-  navigate("/");
-
-}
 const setId=()=>{
   axios.get("http://localhost:9090/loginController/getUser/"+id).then(response=>{
     console.log("a");
     id++;
-    console.log(id);
-      return false;
+    setId();
     }).catch(e=>{
       console.log("b");
       return true;
     });
 }
+const success =()=>{
+  alert("Account Created....\nYour Login Details :\n userid : "+id+"\nPassword : "+pwd+"\nLogin with the above credentials !");
+  
+
+}
+
 const done =()=>{
   if(fname === ""){
     alert("Enter First Name");
@@ -50,11 +50,16 @@ const done =()=>{
     alert("Enter Password");
     return;
   }
+  if(pwd.length<6){
+    alert("Password should have atleast 6 characters");
+    return;
+  }
   if(setId()){
     id++;
   }
 if(pwd === pwd1){
-  axios.post('http://localhost:9090/loginController/addUser',{
+  axios.post('http://localhost:9090/loginController/addUser',
+  {
       
     "userId": id,
     "password": pwd,
@@ -69,7 +74,7 @@ if(pwd === pwd1){
 
 
 }).then(function (r){
-  console.log(r);
+  console.log("posted");
   success();
 })
 }
@@ -87,28 +92,29 @@ return;
 Create new account :</p>
 
 <table>
+  <tbody>
   <tr><td>
     First Name :</td>
-    <td><input onChange={(e) => setFname(e.target.value)} type="text" name="userid" required/></td></tr>
-    <br /><br /><tr>
-    <td>Last Name :</td>
+    <td><input onChange={(e) => setFname(e.target.value)} type="text" name="userid" data-testid="fname-check" required/></td></tr>
+    <tr><td colSpan={2}>&nbsp;</td></tr><tr><td colSpan={2}>&nbsp;</td></tr>
+    <tr><td>Last Name :</td>
     <td><input onChange={(e) => setLname(e.target.value)} type="text" name="userid" required/></td></tr>
-    <br /><br /><tr>
-    <td>Email address :</td>
-    <td><input onChange={(e) => setEmail(e.target.value)} type="email" name="userid" required/></td></tr>
-    <br /><br /><tr>
+    <tr><td colSpan={2}>&nbsp;</td></tr><tr><td colSpan={2}>&nbsp;</td></tr>
+    <tr><td>Email address :</td>
+    <td><input onChange={(e) => setEmail(e.target.value)} type="email" data-testid="email-check" required/></td></tr>
+    <tr><td colSpan={2}>&nbsp;</td></tr><tr><td colSpan={2}>&nbsp;</td></tr><tr>
     <td>Password : </td>
     <td><input onChange={(e) => setPwd(e.target.value)} type="password" name="password1" required/></td></tr>
-    <br /><br /><tr>
+    <tr><td colSpan={2}>&nbsp;</td></tr><tr><td colSpan={2}>&nbsp;</td></tr><tr>
     <td>Re-enter Password : </td>
     <td><input onChange={(e) => setPwd1(e.target.value)} type="password" name="password1" required/></td></tr>
-    </table>
+    </tbody></table>
     <br /><center><br /><br />
-    <button onClick={done}>Sign Up</button></center><br />
-    Back to{" "}
+    <button onClick={done} data-testid="btn-check">Sign Up</button></center><br />
+    Back to{" "}<Router>
     <Link to="/">
           <span>Login</span>
-        </Link>
+        </Link></Router>
     </div>
     </div></center>
   </div>

@@ -9,22 +9,39 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  let pwd=" ";
+  //let pwd=" ";
+  const [pwd, setPwd]=useState("");
+
   function checkIfUserIsValid() {
     axios.get("http://localhost:9090/loginController/getUser/"+username).then(response=>{
-      pwd=response.data.password;
+      setPwd(response.data.password);
     }).catch(e=>{
       console.log(e);
       return false;
     });
-    console.log(pwd);
-    console.log(password);
     if (password === pwd) {
-      return true;}
+      return true;
+    }
+    else {
+      checkIfUserIsValid2();
+      }
+  }
+
+  function checkIfUserIsValid2() {
+    axios.get("http://localhost:9090/loginController/getUser/"+username).then(response=>{
+      setPwd(response.data.password);
+    }).catch(e=>{
+      console.log(e);
+      return false;
+    });
+    if (password === pwd) {
+      return true;
+    }
     else {
       alert("User not found !!! Try again");
       return false;}
   }
+
   function Llogin() {
     if(username === ""){
       alert("Enter userid");
@@ -34,8 +51,8 @@ const Login = () => {
       alert("Enter password");
       return;
     }
-  let isLogged = checkIfUserIsValid();
-    if (isLogged) {
+  //let isLogged = checkIfUserIsValid();
+    if (checkIfUserIsValid()) {
       setState({userId:username});
       navigate("/home");
     } 
@@ -78,6 +95,7 @@ const Login = () => {
       </div>
       </div>
       </center>
+  
     </div>
   );
 };

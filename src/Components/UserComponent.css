@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    font-family: "Quicksand";
+    color: #333;
+    font-size: large;
+    padding: auto;
+  }
+
+.card-header{
+    font-size: x-large;
+    text-decoration: solid;
+}
+
+.form-control{
+    text-align: center;
+}
+
+.content{
+    padding-left: 70px;
+    padding-right: 70px;
+}

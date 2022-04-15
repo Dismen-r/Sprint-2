@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.categories h1{
+
+  background-color:wheat;
+  border-radius: 75px;
+  min-height: 25vh;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family:serif;
+  font-size: calc(25px + 2vmin);
+  color: purple;
+ 
+}
+
+.categories .box-container{
+  display:block;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  gap:15rem;
+}
+
+.categories .box-container .box{
+  padding:3rem 2rem;
+  border-radius: .5rem;
+  background:none;
+  box-shadow: var(--box-shadow);
+  outline:var(--outline);
+  outline-offset: -1rem;
+  text-align: center;
+}
+
+.categories .box-container .box:hover{
+  outline:var(--outline-hover);
+  outline-offset: 0rem;
+}
+
+
+.categories .box-container .box h4{
+ font-size: 2rem;
+ font-family:sans-serif;
+ color:palevioletred;
+ line-height: 1.8;
+}
+
+.categories .box-container .box button{
+  background-color:lightblue;
+  padding:1px5px;
+  min-height:20vh;
+  border: none;
+  border-radius: 50%;
+}

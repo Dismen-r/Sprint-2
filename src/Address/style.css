@@ -1,0 +1,49 @@
+
+.addr{
+    float : left;
+    height : 250px;
+    width: 250px;
+    background-color: aquamarine;
+    justify-content: center;
+    border: 1.5px solid black;
+    padding-left: 50px;
+    border-radius: 7px;
+    margin-left: 115px;
+    padding-right: 50px;
+}
+
+
+
+.adding{
+    height : 800px;
+    width: 300px;
+    background-color: aquamarine;
+    justify-content: center;
+    border: 1.5px solid black;
+    padding-left: 50px;
+    border-radius: 7px;
+    margin-left: 600px;
+    margin-top: 50px;
+}
+
+.t{
+    margin-left: 700px;
+    margin-top: 50px;
+}
+
+.byId{
+    float : left;
+    height : 250px;
+    width: 300px;
+    background-color: aquamarine;
+    justify-content: center;
+    border: 1.5px solid black;
+    padding-left: 50px;
+    border-radius: 7px;
+    margin-left: 600px;
+    margin-top: 50px;
+}
+
+.h{
+    text-align: center;
+}
